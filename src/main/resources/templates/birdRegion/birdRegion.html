@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
 
+<body>
+<header th:replace="fragments :: header"></header>
+
+<h4>Bird regions list:</h4>
+<div class="col-6">
+    <h3 th:unless="${birdRegions} and ${birdRegions.size()}">There are no bird regions!</h3>
+    <table th:if="${birdRegions.size()>0}" class="table table-hover">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Specie ID</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <tr th:each="birdRegion : ${birdRegions}">
+            <td th:text="${birdRegion.regionId}"></td>
+            <td th:text="${birdRegion.regionName}"></td>
+            <td th:text="${birdRegion.speciesId}"></td>
+            <td><a class="btn btn-info"
+                   th:href="@{'/birdRegionView/edit/'+${birdRegion.regionId}}">Edit</a></td>
+            <td><a class="btn btn-danger" th:href="@{'/birdRegionView/delete/'+${birdRegion.regionId}}">Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
+
+<footer th:replace="fragments :: footer"></footer>
 </html>

@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
 
+<body>
+<header th:replace="fragments :: header"></header>
+
+<h4>Ornithology edit:</h4>
+<div class="col-6">
+    <form action="#" th:action="@{/specieView/update/{id}(id=${specie.speciesId})}" th:object="${specie}" method="post">
+        <div class="form-group">
+            <label for="speciesName">Name:</label>
+            <input class="form-control" type="text" th:field="*{speciesName}" id="speciesName">
+        </div>
+        <button type="submit" class="btn btn-primary">Update specie</button>
+    </form>
+</div>
 </body>
+
+<footer th:replace="fragments :: footer"></footer>
 </html>

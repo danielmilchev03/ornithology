@@ -111,7 +111,10 @@ public class Country implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.ornithology.models.Country[ countryId=" + countryId + " ]";
+        return "Country{" +
+                "countryId=" + countryId +
+                ", countryName='" + countryName + '\'' +
+                ", countryBirdFoundList=" + countryBirdFoundList +
+                '}';
     }
-    
 }

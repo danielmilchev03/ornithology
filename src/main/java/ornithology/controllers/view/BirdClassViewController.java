@@ -4,7 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ornithology.data.entity.BirdClass;
+import ornithology.data.entity.User;
 import ornithology.service.BirdClassService;
+import ornithology.service.UserService;
 
 import java.util.List;
 
@@ -13,9 +15,11 @@ import java.util.List;
 public class BirdClassViewController {
 
     private final BirdClassService birdClassService;
+    private final UserService userService;
 
-    public BirdClassViewController(BirdClassService birdClassService) {
+    public BirdClassViewController(BirdClassService birdClassService, UserService userService) {
         this.birdClassService = birdClassService;
+        this.userService = userService;
     }
 
 
@@ -46,6 +50,8 @@ public class BirdClassViewController {
 
     @PostMapping("/update/{id}")
     public String updateBirdClass(Model model, @PathVariable Integer id, BirdClass birdClass) {
+        User user = userService.getUser(1);
+        birdClass.setUserId(user);
         birdClassService.updateBirdClass(birdClass, id);
         return "redirect:/birdClassView";
     }

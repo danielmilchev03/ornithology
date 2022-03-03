@@ -168,7 +168,14 @@ public class BirdFound implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.ornithology.models.BirdFound[ birdFoundId=" + birdFoundId + " ]";
+        return "BirdFound{" +
+                "birdFoundId=" + birdFoundId +
+                ", birdFoundDate=" + birdFoundDate +
+                ", birdFoundCoordinates='" + birdFoundCoordinates + '\'' +
+                ", birdFoundPicture='" + birdFoundPicture + '\'' +
+                ", speciesId=" + speciesId +
+                ", userId=" + userId +
+                ", countryBirdFoundList=" + countryBirdFoundList +
+                '}';
     }
-    
 }

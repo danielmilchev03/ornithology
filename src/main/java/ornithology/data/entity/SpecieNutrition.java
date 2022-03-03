@@ -102,7 +102,10 @@ public class SpecieNutrition implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.ornithology.models.SpecieNutrition[ speciesNutritionId=" + speciesNutritionId + " ]";
+        return "SpecieNutrition{" +
+                "speciesNutritionId=" + speciesNutritionId +
+                ", nutritionId=" + nutritionId +
+                ", speciesId=" + speciesId +
+                '}';
     }
-    
 }

@@ -11,6 +11,10 @@
         <div class="form-group">
             <label for="className">Name:</label>
             <input class="form-control" type="text" th:field="*{className}" id="className">
+            <label for="classificationId">Classification name:</label>
+            <input class="form-control" type="text" th:field="*{classificationId}" id="classificationId">
+            <label for="familyList">Family:</label>
+            <input class="form-control" type="text" th:field="*{familyList}" id="familyList">
         </div>
         <button type="submit" class="btn btn-primary">Update bird class</button>
     </form>

@@ -140,7 +140,12 @@ public class Nutrition implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.ornithology.models.Nutrition[ nutritionId=" + nutritionId + " ]";
+        return "Nutrition{" +
+                "nutritionId=" + nutritionId +
+                ", nutritionName='" + nutritionName + '\'' +
+                ", speciesId=" + speciesId +
+                ", specieNutritionList=" + specieNutritionList +
+                ", userId=" + userId +
+                '}';
     }
-    
 }

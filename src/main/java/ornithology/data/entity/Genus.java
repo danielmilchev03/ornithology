@@ -156,7 +156,13 @@ public class Genus implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.ornithology.models.Genus[ genusId=" + genusId + " ]";
+        return "Genus{" +
+                "genusId=" + genusId +
+                ", genusName='" + genusName + '\'' +
+                ", genusCreateDate=" + genusCreateDate +
+                ", specieList=" + specieList +
+                ", familyId=" + familyId +
+                ", userId=" + userId +
+                '}';
     }
-    
 }

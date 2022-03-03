@@ -175,7 +175,16 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.ornithology.models.User[ userId=" + userId + " ]";
+        return "User{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", classificationList=" + classificationList +
+                ", specieList=" + specieList +
+                ", birdClassList=" + birdClassList +
+                ", birdFoundList=" + birdFoundList +
+                ", familyList=" + familyList +
+                ", genusList=" + genusList +
+                ", nutritionList=" + nutritionList +
+                '}';
     }
-    
 }

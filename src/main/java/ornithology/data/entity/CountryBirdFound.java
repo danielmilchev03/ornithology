@@ -101,7 +101,10 @@ public class CountryBirdFound implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.ornithology.models.CountryBirdFound[ countriesBirdsFoundId=" + countriesBirdsFoundId + " ]";
+        return "CountryBirdFound{" +
+                "countriesBirdsFoundId=" + countriesBirdsFoundId +
+                ", birdsFoundId=" + birdsFoundId +
+                ", countryId=" + countryId +
+                '}';
     }
-    
 }

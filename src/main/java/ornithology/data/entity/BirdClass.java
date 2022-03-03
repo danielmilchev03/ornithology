@@ -138,7 +138,12 @@ public class BirdClass implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.ornithology.models.BirdClass[ classId=" + classId + " ]";
+        return "BirdClass{" +
+                "classId=" + classId +
+                ", className='" + className + '\'' +
+                ", classificationId=" + classificationId +
+                ", userId=" + userId +
+                ", familyList=" + familyList +
+                '}';
     }
-    
 }

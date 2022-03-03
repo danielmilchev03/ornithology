@@ -168,7 +168,14 @@ public class Family implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.ornithology.models.Family[ familyId=" + familyId + " ]";
+        return "Family{" +
+                "familyId=" + familyId +
+                ", familyName='" + familyName + '\'' +
+                ", familyParentId=" + familyParentId +
+                ", familyCreateDate=" + familyCreateDate +
+                ", classId=" + classId +
+                ", userId=" + userId +
+                ", genusList=" + genusList +
+                '}';
     }
-    
 }

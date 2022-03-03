@@ -109,7 +109,10 @@ public class BirdRegion implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.ornithology.models.Region[ regionId=" + regionId + " ]";
+        return "BirdRegion{" +
+                "regionId=" + regionId +
+                ", regionName='" + regionName + '\'' +
+                ", speciesId=" + speciesId +
+                '}';
     }
-    
 }

@@ -7,16 +7,21 @@
 
 <h4>Bird classes list:</h4>
 <div class="col-6">
-    <a class="btn btn-success" th:href="@{'/birdClassView/create-bird-class/    '}">Add</a>
     <h3 th:unless="${birdClasses} and ${birdClasses.size()}">There are no bird classes!</h3>
     <table th:if="${birdClasses.size()>0}" class="table table-hover">
-        <th>Id</th>
+        <th>ID</th>
         <th>Name</th>
+        <th>Classification name</th>
+        <th>User name</th>
+        <th>Family ID</th>
         <th>Edit</th>
         <th>Delete</th>
         <tr th:each="birdClass : ${birdClasses}">
             <td th:text="${birdClass.classId}"></td>
             <td th:text="${birdClass.className}"></td>
+            <td th:text="${birdClass.classificationId.classificationName}"></td>
+            <td th:text="${birdClass.userId.userName}"></td>
+            <td th:text="${birdClass.familyList}"></td>
             <td><a class="btn btn-info"
                    th:href="@{'/birdClassView/edit/'+${birdClass.classId}}">Edit</a></td>
             <td><a class="btn btn-danger" th:href="@{'/birdClassView/delete/'+${birdClass.classId}}">Delete</a>

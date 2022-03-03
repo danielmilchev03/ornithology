@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
 
+<body>
+<header th:replace="fragments :: header"></header>
+
+<h4>Ornithology edit:</h4>
+<div class="col-6">
+    <form action="#" th:action="@{/countryView/update/{id}(id=${country.countryId})}" th:object="${country}" method="post">
+        <div class="form-group">
+            <label for="countryName">Name:</label>
+            <input class="form-control" type="text" th:field="*{countryName}" id="countryName">
+        </div>
+        <button type="submit" class="btn btn-primary">Update country</button>
+    </form>
+</div>
 </body>
+
+<footer th:replace="fragments :: footer"></footer>
 </html>
