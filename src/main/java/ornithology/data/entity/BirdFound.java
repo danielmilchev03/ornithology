@@ -8,6 +8,7 @@ package ornithology.data.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -55,6 +56,7 @@ public class BirdFound implements Serializable {
     @NotNull
     @Column(name = "bird_found_date")
     @Temporal(TemporalType.TIMESTAMP)
+    //@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date birdFoundDate;
     @Basic(optional = false)
     @NotNull

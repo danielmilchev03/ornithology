@@ -5,8 +5,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ornithology.data.entity.BirdClass;
 import ornithology.data.entity.Classification;
+import ornithology.data.entity.User;
 import ornithology.service.BirdClassService;
 import ornithology.service.ClassificationService;
+import ornithology.service.UserService;
 
 import java.util.List;
 
@@ -15,9 +17,11 @@ import java.util.List;
 public class ClassificationViewController {
 
     private final ClassificationService classificationService;
+    private final UserService userService;
 
-    public ClassificationViewController(ClassificationService classificationService) {
+    public ClassificationViewController(ClassificationService classificationService, UserService userService) {
         this.classificationService = classificationService;
+        this.userService = userService;
     }
 
     @GetMapping
@@ -47,6 +51,8 @@ public class ClassificationViewController {
 
     @PostMapping("/update/{id}")
     public String updateClassification(Model model, @PathVariable Integer id, Classification classification) {
+        User user = userService.getUser(1);
+        classification.setUserId(user);
         classificationService.updateClassification(classification, id);
         return "redirect:/classificationView";
     }

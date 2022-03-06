@@ -13,9 +13,14 @@ import java.util.List;
 public class GenusViewController {
 
     private final GenusService genusService;
+    private final UserService userService;
+    private final FamilyService familyService;
 
-    public GenusViewController(GenusService genusService) {
+
+    public GenusViewController(GenusService genusService, UserService userService, FamilyService familyService) {
         this.genusService = genusService;
+        this.userService = userService;
+        this.familyService = familyService;
     }
 
     @GetMapping
@@ -45,6 +50,10 @@ public class GenusViewController {
 
     @PostMapping("/update/{id}")
     public String updateGenus(Model model, @PathVariable Integer id, Genus genus) {
+        User user = userService.getUser(1);
+        genus.setUserId(user);
+        Family family = familyService.getFamily(1);
+        genus.setFamilyId(family);
         genusService.updateGenus(genus, id);
         return "redirect:/genusView";
     }

@@ -142,10 +142,6 @@ public class Nutrition implements Serializable {
     public String toString() {
         return "Nutrition{" +
                 "nutritionId=" + nutritionId +
-                ", nutritionName='" + nutritionName + '\'' +
-                ", speciesId=" + speciesId +
-                ", specieNutritionList=" + specieNutritionList +
-                ", userId=" + userId +
-                '}';
+                ", nutritionName='" + nutritionName + '}';
     }
 }

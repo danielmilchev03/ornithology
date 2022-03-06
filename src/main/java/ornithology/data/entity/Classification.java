@@ -120,9 +120,7 @@ public class Classification implements Serializable {
     public String toString() {
         return "Classification{" +
                 "classificationId=" + classificationId +
-                ", classificationName='" + classificationName + '\'' +
-                ", userId=" + userId +
-                ", birdClassList=" + birdClassList +
-                '}';
+                ", classificationName='" + classificationName +
+                ", userId=" + userId +'}';
     }
 }

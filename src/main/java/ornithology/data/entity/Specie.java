@@ -171,11 +171,6 @@ public class Specie implements Serializable {
         return "Specie{" +
                 "speciesId=" + speciesId +
                 ", speciesName='" + speciesName + '\'' +
-                ", speciesCreateDate=" + speciesCreateDate +
-                ", specieNutritionList=" + specieNutritionList +
-                ", genusId=" + genusId +
-                ", userId=" + userId +
-                ", birdFoundList=" + birdFoundList +
-                '}';
+                ", speciesCreateDate=" + speciesCreateDate + '}';
     }
 }

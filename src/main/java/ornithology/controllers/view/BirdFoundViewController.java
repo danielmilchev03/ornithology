@@ -5,8 +5,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ornithology.data.entity.BirdClass;
 import ornithology.data.entity.BirdFound;
+import ornithology.data.entity.User;
 import ornithology.service.BirdClassService;
 import ornithology.service.BirdFoundService;
+import ornithology.service.UserService;
 
 import java.util.List;
 
@@ -15,9 +17,11 @@ import java.util.List;
 public class BirdFoundViewController {
 
     private final BirdFoundService birdFoundService;
+    private final UserService userService;
 
-    public BirdFoundViewController(BirdFoundService birdFoundService) {
+    public BirdFoundViewController(BirdFoundService birdFoundService, UserService userService) {
         this.birdFoundService = birdFoundService;
+        this.userService = userService;
     }
 
     @GetMapping
@@ -47,7 +51,11 @@ public class BirdFoundViewController {
 
     @PostMapping("/update/{id}")
     public String updateBirdFound(Model model, @PathVariable Integer id, BirdFound birdFound) {
+        System.out.println("test");
+        User user = userService.getUser(1);
+        birdFound.setUserId(user);
         birdFoundService.updateBirdFound(birdFound, id);
+        System.out.println("test 2");
         return "redirect:/birdFoundView";
     }
 

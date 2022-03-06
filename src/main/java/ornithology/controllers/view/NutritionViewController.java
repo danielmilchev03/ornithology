@@ -13,9 +13,11 @@ import java.util.List;
 public class NutritionViewController {
 
     private final NutritionService nutritionService;
+    private final UserService userService;
 
-    public NutritionViewController(NutritionService nutritionService) {
+    public NutritionViewController(NutritionService nutritionService, UserService userService) {
         this.nutritionService = nutritionService;
+        this.userService = userService;
     }
 
     @GetMapping
@@ -45,6 +47,8 @@ public class NutritionViewController {
 
     @PostMapping("/update/{id}")
     public String updateNutrition(Model model, @PathVariable Integer id, Nutrition nutrition) {
+        User user = userService.getUser(1);
+        nutrition.setUserId(user);
         nutritionService.updateNutrition(nutrition, id);
         return "redirect:/nutritionView";
     }

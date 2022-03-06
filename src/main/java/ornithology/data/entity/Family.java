@@ -170,12 +170,6 @@ public class Family implements Serializable {
     public String toString() {
         return "Family{" +
                 "familyId=" + familyId +
-                ", familyName='" + familyName + '\'' +
-                ", familyParentId=" + familyParentId +
-                ", familyCreateDate=" + familyCreateDate +
-                ", classId=" + classId +
-                ", userId=" + userId +
-                ", genusList=" + genusList +
-                '}';
+                ", familyName='" + familyName + '}';
     }
 }

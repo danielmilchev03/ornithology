@@ -13,9 +13,13 @@ import java.util.List;
 public class FamilyViewController {
 
     private final FamilyService familyService;
+    private final BirdClassService birdClassService;
+    private final UserService userService;
 
-    public FamilyViewController(FamilyService familyService) {
+    public FamilyViewController(FamilyService familyService, BirdClassService birdClassService, UserService userService) {
         this.familyService = familyService;
+        this.birdClassService = birdClassService;
+        this.userService = userService;
     }
 
     @GetMapping
@@ -45,6 +49,10 @@ public class FamilyViewController {
 
     @PostMapping("/update/{id}")
     public String updateFamily(Model model, @PathVariable Integer id, Family family) {
+        BirdClass birdClass = birdClassService.getBirdClass(1);
+        family.setClassId(birdClass);
+        User user = userService.getUser(1);
+        family.setUserId(user);
         familyService.updateFamily(family, id);
         return "redirect:/familyView";
     }

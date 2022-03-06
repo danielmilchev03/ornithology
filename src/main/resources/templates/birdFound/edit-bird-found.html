@@ -10,7 +10,7 @@
     <form action="#" th:action="@{/birdFoundView/update/{id}(id=${birdFound.birdFoundId})}" th:object="${birdFound}" method="post">
         <div class="form-group">
             <label for="birdFoundDate">Date:</label>
-            <input class="form-control" type="text" th:field="*{birdFoundDate}" id="birdFoundDate">
+            <input class="form-control" type="date" th:field="*{birdFoundDate}" id="birdFoundDate">
             <label for="birdFoundCoordinates">Coordinates:</label>
             <input class="form-control" type="text" th:field="*{birdFoundCoordinates}" id="birdFoundCoordinates">
             <label for="birdFoundPicture">Picture:</label>

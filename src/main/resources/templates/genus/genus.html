@@ -5,7 +5,7 @@
 <body>
 <header th:replace="fragments :: header"></header>
 
-<h4>Countries list:</h4>
+<h4>Genuses list:</h4>
 <div class="col-6">
     <h3 th:unless="${genuses} and ${genuses.size()}">There are no countries!</h3>
     <table th:if="${genuses.size()>0}" class="table table-hover">

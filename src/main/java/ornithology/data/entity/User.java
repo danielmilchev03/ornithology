@@ -177,14 +177,6 @@ public class User implements Serializable {
     public String toString() {
         return "User{" +
                 "userId=" + userId +
-                ", userName='" + userName + '\'' +
-                ", classificationList=" + classificationList +
-                ", specieList=" + specieList +
-                ", birdClassList=" + birdClassList +
-                ", birdFoundList=" + birdFoundList +
-                ", familyList=" + familyList +
-                ", genusList=" + genusList +
-                ", nutritionList=" + nutritionList +
-                '}';
+                ", userName='" + userName + '}';
     }
 }
