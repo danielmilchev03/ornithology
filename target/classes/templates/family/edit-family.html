@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+
+<body>
+<header th:replace="fragments :: header"></header>
+
+<h4>Ornithology edit:</h4>
+<div class="col-6">
+    <form action="#" th:action="@{/familyView/update/{id}(id=${family.familyId})}" th:object="${family}" method="post">
+        <div class="form-group">
+            <label for="familyName">Name:</label>
+            <input class="form-control" type="text" th:field="*{familyName}" id="familyName">
+            <label for="familyParentId">Parent ID:</label>
+            <input class="form-control" type="text" th:field="*{familyParentId}" id="familyParentId">
+            <label for="familyCreateDate">Create date:</label>
+            <input class="form-control" type="date" th:field="*{familyCreateDate}" id="familyCreateDate">
+        </div>
+        <button type="submit" class="btn btn-primary">Update family</button>
+    </form>
+</div>
+</body>
+
+<footer th:replace="fragments :: footer"></footer>
+</html>

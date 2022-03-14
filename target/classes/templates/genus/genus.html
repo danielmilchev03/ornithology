@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+
+<body>
+<header th:replace="fragments :: header"></header>
+
+<h4>Genuses list:</h4>
+<div class="col-6">
+    <h3 th:unless="${genuses} and ${genuses.size()}">There are no countries!</h3>
+    <table th:if="${genuses.size()>0}" class="table table-hover">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Create date</th>
+        <th>Family ID</th>
+        <th>User ID</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <tr th:each="genus : ${genuses}">
+            <td th:text="${genus.genusId}"></td>
+            <td th:text="${genus.genusName}"></td>
+            <td th:text="${genus.genusCreateDate}"></td>
+            <td th:text="${genus.familyId}"></td>
+            <td th:text="${genus.userId}"></td>
+            <td><a class="btn btn-info"
+                   th:href="@{'/genusView/edit/'+${genus.genusId}}">Edit</a></td>
+            <td><a class="btn btn-danger" th:href="@{'/genusView/delete/'+${genus.genusId}}">Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+
+<footer th:replace="fragments :: footer"></footer>
+</html>

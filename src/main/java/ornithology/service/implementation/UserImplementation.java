@@ -1,5 +1,7 @@
 package ornithology.service.implementation;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ornithology.data.entity.Family;
 import ornithology.data.entity.User;
@@ -47,4 +49,14 @@ public class UserImplementation implements UserService {
     public void deleteUser(Integer id) {
         userRepository.deleteById(id);
     }
+
+    @Override
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        User user = userRepository.findByUserName(userName);
+        if (user == null) {
+            throw new UsernameNotFoundException(userName);
+        }
+        return (UserDetails) user;
+    }
+
 }

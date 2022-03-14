@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+
+<body>
+<header th:replace="fragments :: header"></header>
+
+<h4>Nutrition list:</h4>
+<div class="col-6">
+    <h3 th:unless="${nutritions} and ${nutritions.size()}">There are no nutritions!</h3>
+    <table th:if="${nutritions.size()>0}" class="table table-hover">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <tr th:each="nutrition : ${nutritions}">
+            <td th:text="${nutrition.nutritionId}"></td>
+            <td th:text="${nutrition.nutritionName}"></td>
+            <td><a class="btn btn-info"
+                   th:href="@{'/nutritionView/edit/'+${nutrition.nutritionId}}">Edit</a></td>
+            <td><a class="btn btn-danger" th:href="@{'/nutritionView/delete/'+${nutrition.nutritionId}}">Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+
+<footer th:replace="fragments :: footer"></footer>
+</html>

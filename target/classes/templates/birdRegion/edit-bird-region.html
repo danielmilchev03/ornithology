@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+
+<body>
+<header th:replace="fragments :: header"></header>
+
+<h4>Ornithology edit:</h4>
+<div class="col-6">
+    <form action="#" th:action="@{/birdRegionView/update/{id}(id=${birdRegion.regionId})}" th:object="${birdRegion}" method="post">
+        <div class="form-group">
+            <label for="regionName">Name:</label>
+            <input class="form-control" type="text" th:field="*{regionName}" id="regionName">
+            <label for="speciesId">Specie ID:</label>
+            <input class="form-control" type="text" th:field="*{speciesId}" id="speciesId">
+        </div>
+        <button type="submit" class="btn btn-primary">Update bird region</button>
+    </form>
+</div>
+</body>
+
+<footer th:replace="fragments :: footer"></footer>
+</html>

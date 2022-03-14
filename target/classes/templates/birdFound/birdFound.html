@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+
+<body>
+<header th:replace="fragments :: header"></header>
+
+<h4>Birds found list:</h4>
+<div class="col-6">
+    <h3 th:unless="${birdsFound} and ${birdsFound.size()}">There are no birds found!</h3>
+    <table th:if="${birdsFound.size()>0}" class="table table-hover">
+        <th>ID</th>
+        <th>Date of finding</th>
+        <th>Coordinates</th>
+        <th>Picture</th>
+        <th>Specie name</th>
+        <th>User name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <tr th:each="birdFound : ${birdsFound}">
+            <td th:text="${birdFound.birdFoundId}"></td>
+            <td th:text="${birdFound.birdFoundDate}"></td>
+            <td th:text="${birdFound.birdFoundCoordinates}"></td>
+            <td th:text="${birdFound.birdFoundPicture}"></td>
+            <td th:text="${birdFound.speciesId.speciesName}"></td>
+            <td th:text="${birdFound.userId.userName}"></td>
+            <td><a class="btn btn-info"
+                   th:href="@{'/birdFoundView/edit/'+${birdFound.birdFoundId}}">Edit</a></td>
+            <td><a class="btn btn-danger" th:href="@{'/birdFoundView/delete/'+${birdFound.birdFoundId}}">Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+
+<footer th:replace="fragments :: footer"></footer>
+</html>

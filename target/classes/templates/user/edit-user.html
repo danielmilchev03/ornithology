@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+
+<body>
+<header th:replace="fragments :: header"></header>
+
+<h4>Ornithology edit:</h4>
+<div class="col-6">
+    <form action="#" th:action="@{/userView/update/{id}(id=${user.userId})}" th:object="${user}" method="post">
+        <div class="form-group">
+            <label for="userName">Name:</label>
+            <input class="form-control" type="text" th:field="*{userName}" id="userName">
+        </div>
+        <button type="submit" class="btn btn-primary">Update user</button>
+    </form>
+</div>
+</body>
+
+<footer th:replace="fragments :: footer"></footer>
+</html>

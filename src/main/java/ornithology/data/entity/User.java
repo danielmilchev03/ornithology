@@ -45,6 +45,17 @@ public class User implements Serializable {
     //@Size(max = 2147483647)
     @Column(name = "user_name")
     private String userName;
+    @Column(name = "user_password")
+    private String password;
+    @Column(name = "user_is_account_non_expired")
+    private boolean isAccountNonExpired;
+    @Column(name = "user_is_account_non_locked")
+    private boolean isAccountNonLocked;
+    @Column(name = "user_is_credentials_non_expired")
+    private boolean isCredentialsNonExpired;
+    @Column(name = "user_is_enabled")
+    private boolean isEnabled;
+
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private List<Classification> classificationList;
@@ -88,6 +99,46 @@ public class User implements Serializable {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public boolean isAccountNonExpired() {
+        return isAccountNonExpired;
+    }
+
+    public void setAccountNonExpired(boolean accountNonExpired) {
+        isAccountNonExpired = accountNonExpired;
+    }
+
+    public boolean isAccountNonLocked() {
+        return isAccountNonLocked;
+    }
+
+    public void setAccountNonLocked(boolean accountNonLocked) {
+        isAccountNonLocked = accountNonLocked;
+    }
+
+    public boolean isCredentialsNonExpired() {
+        return isCredentialsNonExpired;
+    }
+
+    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+        isCredentialsNonExpired = credentialsNonExpired;
+    }
+
+    public boolean isEnabled() {
+        return isEnabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        isEnabled = enabled;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @XmlTransient

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+
+<body>
+<header th:replace="fragments :: header"></header>
+
+<h4>Species list:</h4>
+<div class="col-6">
+    <h3 th:unless="${species} and ${species.size()}">There are no species!</h3>
+    <table th:if="${species.size()>0}" class="table table-hover">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Specie create date</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <tr th:each="specie : ${species}">
+            <td th:text="${specie.speciesId}"></td>
+            <td th:text="${specie.speciesName}"></td>
+            <td th:text="${specie.speciesCreateDate}"></td>
+            <td><a class="btn btn-info"
+                   th:href="@{'/specieView/edit/'+${specie.speciesId}}">Edit</a></td>
+            <td><a class="btn btn-danger" th:href="@{'/specieView/delete/'+${specie.speciesId}}">Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+
+<footer th:replace="fragments :: footer"></footer>
+</html>
