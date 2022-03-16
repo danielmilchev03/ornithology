@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -22,12 +23,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/").authenticated()
-                .antMatchers("/customerView/**").hasAnyAuthority("ADMIN", "EMPLOYEE", "ADMIN_AUTO_SERVICE")
-                .antMatchers("/typeOfServiceView").hasAnyAuthority("CUSTOMER", "ADMIN", "EMPLOYEE", "ADMIN_AUTO_SERVICE")
-                //.antMatchers("/carView/edit").hasAnyAuthority("ADMIN", "ADMIN_AUTO_SERVICE")
-                //.antMatchers("/carView/delete").hasAnyAuthority("ADMIN", "ADMIN_AUTO_SERVICE")
-                //.antMatchers("/carView/create").hasAnyAuthority("ADMIN", "ADMIN_AUTO_SERVICE")
-                .antMatchers("/employeeView/**").hasAnyAuthority("ADMIN", "ADMIN_AUTO_SERVICE")
+                .antMatchers("/userView/**").hasAnyAuthority("ADMIN")
+                .antMatchers("/birdClassView/**").hasAnyAuthority("ADMIN", "SCIENTIST", "TEACHER", "STUDENT")
+                .antMatchers("/birdFoundView/**").hasAnyAuthority("ADMIN", "SCIENTIST", "TEACHER", "STUDENT")
+                .antMatchers("/birdRegionView/**").hasAnyAuthority("ADMIN", "SCIENTIST", "TEACHER", "STUDENT")
+                .antMatchers("/classificationView/**").hasAnyAuthority("ADMIN", "SCIENTIST", "TEACHER", "STUDENT")
+                .antMatchers("/countryView/**").hasAnyAuthority("ADMIN", "SCIENTIST", "TEACHER", "STUDENT")
+                .antMatchers("/familyView/**").hasAnyAuthority("ADMIN", "SCIENTIST", "TEACHER", "STUDENT")
+                .antMatchers("/genusView/**").hasAnyAuthority("ADMIN", "SCIENTIST", "TEACHER", "STUDENT")
+                .antMatchers("/nutritionView/**").hasAnyAuthority("ADMIN", "SCIENTIST", "TEACHER", "STUDENT")
+                .antMatchers("/specieView/**").hasAnyAuthority("ADMIN", "SCIENTIST", "TEACHER", "STUDENT")
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -40,5 +45,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login")
                 .permitAll();
     }
-
 }

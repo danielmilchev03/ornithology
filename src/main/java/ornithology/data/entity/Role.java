@@ -1,10 +1,13 @@
 package ornithology.data.entity;
 
-import com.sun.istack.NotNull;
+        import com.sun.istack.NotNull;
+        import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.util.Set;
+        import java.io.Serializable;
+        import java.util.Set;
+        import javax.persistence.*;
+        import javax.xml.bind.annotation.XmlRootElement;
+
 
 @Entity
 @Table(name = "role")
@@ -12,50 +15,83 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r"),
         @NamedQuery(name = "Role.findByRoleId", query = "SELECT r FROM Role r WHERE r.roleId = :roleId"),
-        @NamedQuery(name = "Role.findByRoleAuthority", query = "SELECT r FROM Role r WHERE r.roleAuthority = :roleAuthority")})
-public class Role {
+        @NamedQuery(name = "Role.findByRoleAuthority", query = "SELECT r FROM Role r WHERE r.authority = :authority")})
+public class Role implements Serializable, GrantedAuthority {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @NotNull
     @Column(name = "role_id")
-    private Integer roleId;
+    private Long roleId;
     @Basic(optional = false)
     @NotNull
     //@Size(min = 1, max = 2147483647)
     @Column(name = "role_authority")
-    private String roleAuthority;
+    private String authority;
+    @ManyToMany(mappedBy = "authorities")
+    private Set<User> users;
 
     public Role() {
     }
 
-    public Role(Integer roleId, String roleAuthority) {
+    public Role(Long roleId) {
         this.roleId = roleId;
-        this.roleAuthority = roleAuthority;
     }
 
-    public Integer getRoleId() {
+    public Role(Long roleId, String authority) {
+        this.roleId = roleId;
+        this.authority = authority;
+    }
+
+    public Long getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(Integer roleId) {
+    public void setRoleId(Long roleId) {
         this.roleId = roleId;
     }
 
-    public String getRoleAuthority() {
-        return roleAuthority;
+    public String getAuthority() {
+        return authority;
     }
 
-    public void setRoleAuthority(String roleAuthority) {
-        this.roleAuthority = roleAuthority;
+    public void setAuthority(String authority) {
+        this.authority = authority;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (roleId != null ? roleId.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Role)) {
+            return false;
+        }
+        Role other = (Role) object;
+        if ((this.roleId == null && other.roleId != null) || (this.roleId != null && !this.roleId.equals(other.roleId))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
         return "Role{" +
                 "roleId=" + roleId +
-                ", roleAuthority='" + roleAuthority + '\'' +
+                ", authority='" + authority + '\'' +
                 '}';
     }
 }

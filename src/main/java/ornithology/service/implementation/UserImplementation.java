@@ -51,12 +51,12 @@ public class UserImplementation implements UserService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        User user = userRepository.findByUserName(userName);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username);
         if (user == null) {
-            throw new UsernameNotFoundException(userName);
+            throw new UsernameNotFoundException(username);
         }
-        return (UserDetails) user;
+        return user;
     }
 
 }

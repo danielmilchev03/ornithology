@@ -15,7 +15,7 @@ and open the template in the editor.
     <div class="row">
         <div class="col-9"><h3>Ornithology application</h3></div>
         <div class="col-3">
-            <h5 sec:authentication="user.userName"></h5>
+            <h5 sec:authentication="principal.username"></h5>
             <a class="btn" th:href="@{/logout}">Logout</a>
         </div>
     </div>
@@ -53,9 +53,9 @@ and open the template in the editor.
                 <li class="nav-item">
                     <a class="nav-link" href="/specieView">Species</a>
                 </li>
-                <!--                <li class="nav-item">-->
-                <!--                    <a class="nav-link" href="/schools/create-school">Create School</a>-->
-                <!--                </li>-->
+                <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN')">
+                    <a class="nav-link" href="/userView">User</a>
+                </li>
             </ul>
         </div>
     </nav>

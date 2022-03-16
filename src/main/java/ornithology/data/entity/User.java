@@ -1,40 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ornithology.data.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import java.util.Set;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author pc
- */
 @Entity
 @Table(name = "users")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
     @NamedQuery(name = "User.findByUserId", query = "SELECT u FROM User u WHERE u.userId = :userId"),
-    @NamedQuery(name = "User.findByUserName", query = "SELECT u FROM User u WHERE u.userName = :userName")})
-public class User implements Serializable {
+    @NamedQuery(name = "User.findByUserName", query = "SELECT u FROM User u WHERE u.username = :username")})
+public class User implements Serializable, UserDetails {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,7 +28,7 @@ public class User implements Serializable {
     private Integer userId;
     //@Size(max = 2147483647)
     @Column(name = "user_name")
-    private String userName;
+    private String username;
     @Column(name = "user_password")
     private String password;
     @Column(name = "user_is_account_non_expired")
@@ -55,6 +39,8 @@ public class User implements Serializable {
     private boolean isCredentialsNonExpired;
     @Column(name = "user_is_enabled")
     private boolean isEnabled;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Role> authorities;
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
@@ -93,14 +79,25 @@ public class User implements Serializable {
         this.userId = userId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
     public boolean isAccountNonExpired() {
         return isAccountNonExpired;
     }
@@ -109,6 +106,7 @@ public class User implements Serializable {
         isAccountNonExpired = accountNonExpired;
     }
 
+    @Override
     public boolean isAccountNonLocked() {
         return isAccountNonLocked;
     }
@@ -117,6 +115,7 @@ public class User implements Serializable {
         isAccountNonLocked = accountNonLocked;
     }
 
+    @Override
     public boolean isCredentialsNonExpired() {
         return isCredentialsNonExpired;
     }
@@ -125,6 +124,7 @@ public class User implements Serializable {
         isCredentialsNonExpired = credentialsNonExpired;
     }
 
+    @Override
     public boolean isEnabled() {
         return isEnabled;
     }
@@ -133,15 +133,6 @@ public class User implements Serializable {
         isEnabled = enabled;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @XmlTransient
     public List<Classification> getClassificationList() {
         return classificationList;
     }
@@ -150,7 +141,6 @@ public class User implements Serializable {
         this.classificationList = classificationList;
     }
 
-    @XmlTransient
     public List<Specie> getSpecieList() {
         return specieList;
     }
@@ -159,7 +149,6 @@ public class User implements Serializable {
         this.specieList = specieList;
     }
 
-    @XmlTransient
     public List<BirdClass> getBirdClassList() {
         return birdClassList;
     }
@@ -168,7 +157,6 @@ public class User implements Serializable {
         this.birdClassList = birdClassList;
     }
 
-    @XmlTransient
     public List<BirdFound> getBirdFoundList() {
         return birdFoundList;
     }
@@ -177,7 +165,6 @@ public class User implements Serializable {
         this.birdFoundList = birdFoundList;
     }
 
-    @XmlTransient
     public List<Family> getFamilyList() {
         return familyList;
     }
@@ -186,7 +173,6 @@ public class User implements Serializable {
         this.familyList = familyList;
     }
 
-    @XmlTransient
     public List<Genus> getGenusList() {
         return genusList;
     }
@@ -195,7 +181,6 @@ public class User implements Serializable {
         this.genusList = genusList;
     }
 
-    @XmlTransient
     public List<Nutrition> getNutritionList() {
         return nutritionList;
     }
@@ -203,6 +188,16 @@ public class User implements Serializable {
     public void setNutritionList(List<Nutrition> nutritionList) {
         this.nutritionList = nutritionList;
     }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(Set<Role> authorities) {
+        this.authorities = authorities;
+    }
+
 
     @Override
     public int hashCode() {
@@ -228,6 +223,8 @@ public class User implements Serializable {
     public String toString() {
         return "User{" +
                 "userId=" + userId +
-                ", userName='" + userName + '}';
+                ", userName='" + username + '\'' +
+                ", authorities=" + authorities +
+                '}';
     }
 }
