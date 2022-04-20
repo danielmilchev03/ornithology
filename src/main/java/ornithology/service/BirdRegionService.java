@@ -7,7 +7,7 @@ import java.util.List;
 
 @Service
 public interface BirdRegionService {
-    List<BirdRegion> getBirdRegion();
+    List<BirdRegion> getBirdRegions();
 
     BirdRegion getBirdRegion(Integer id);
 

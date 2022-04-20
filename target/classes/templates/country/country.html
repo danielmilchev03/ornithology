@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments :: head"></head>
 
 <body>
@@ -11,14 +11,14 @@
     <table th:if="${countries.size()>0}" class="table table-hover">
         <th>ID</th>
         <th>Name</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th sec:authorize="hasAnyAuthority('ADMIN', 'SCIENTIST', 'TEACHER')">Edit</th>
+        <th sec:authorize="hasAnyAuthority('ADMIN', 'SCIENTIST', 'TEACHER')">Delete</th>
         <tr th:each="country : ${countries}">
             <td th:text="${country.countryId}"></td>
             <td th:text="${country.countryName}"></td>
-            <td><a class="btn btn-info"
+            <td sec:authorize="hasAnyAuthority('ADMIN', 'ADMIN_AUTO_SERVICE','EMPLOYEE')"><a class="btn btn-info"
                    th:href="@{'/countryView/edit/'+${country.countryId}}">Edit</a></td>
-            <td><a class="btn btn-danger" th:href="@{'/countryView/delete/'+${country.countryId}}">Delete</a>
+            <td sec:authorize="hasAnyAuthority('ADMIN', 'ADMIN_AUTO_SERVICE','EMPLOYEE')"><a class="btn btn-danger" th:href="@{'/countryView/delete/'+${country.countryId}}">Delete</a>
             </td>
         </tr>
     </table>

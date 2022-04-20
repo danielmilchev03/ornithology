@@ -19,7 +19,7 @@ public class IndexController {
 
     @GetMapping
     public String getIndex(Model model) {
-        final String welcomeMessage = "Welcome to the service System!";
+        final String welcomeMessage = "welcome to the Ornithology application!";
         model.addAttribute("welcome", welcomeMessage);
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -35,14 +35,14 @@ public class IndexController {
 
     @GetMapping("login")
     public String login(Model model) {
-        final String welcomeMessage = "Welcome to my ornithology app!";
+        final String welcomeMessage = "welcome to my ornithology app!";
         model.addAttribute("welcome", welcomeMessage);
         return "login";
     }
 
     @GetMapping("unauthorized")
     public String unauthorized(Model model) {
-        final String welcomeMessage = "Welcome to my ornithology app!";
+        final String welcomeMessage = "welcome to my ornithology app!";
         model.addAttribute("welcome", welcomeMessage);
         return "unauthorized";
     }

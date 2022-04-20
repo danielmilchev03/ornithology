@@ -22,7 +22,7 @@ public class BirdRegionApiController {
 
     @GetMapping
     public List<BirdRegion> getBirdRegion(){
-        return birdRegionService.getBirdRegion();
+        return birdRegionService.getBirdRegions();
     }
 
     @RequestMapping("/{id}")

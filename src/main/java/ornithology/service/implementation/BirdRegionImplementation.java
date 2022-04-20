@@ -20,7 +20,7 @@ public class BirdRegionImplementation implements BirdRegionService {
     }
 
     @Override
-    public List<BirdRegion> getBirdRegion() {
+    public List<BirdRegion> getBirdRegions() {
         return birdRegionRepository.findAll();
     }
 

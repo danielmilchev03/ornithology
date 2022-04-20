@@ -51,6 +51,7 @@ public class BirdClassViewController {
     @PostMapping("/update/{id}")
     public String updateBirdClass(Model model, @PathVariable Integer id, BirdClass birdClass) {
         User user = userService.getUser(1);
+        System.out.println("user: " + user + ", instance: " + this);
         birdClass.setUserId(user);
         birdClassService.updateBirdClass(birdClass, id);
         return "redirect:/birdClassView";

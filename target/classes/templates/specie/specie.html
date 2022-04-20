@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments :: head"></head>
 
 <body>
@@ -12,15 +12,15 @@
         <th>ID</th>
         <th>Name</th>
         <th>Specie create date</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th sec:authorize="hasAnyAuthority('ADMIN', 'SCIENTIST', 'TEACHER')">Edit</th>
+        <th sec:authorize="hasAnyAuthority('ADMIN', 'SCIENTIST', 'TEACHER')">Delete</th>
         <tr th:each="specie : ${species}">
             <td th:text="${specie.speciesId}"></td>
             <td th:text="${specie.speciesName}"></td>
             <td th:text="${specie.speciesCreateDate}"></td>
-            <td><a class="btn btn-info"
+            <td sec:authorize="hasAnyAuthority('ADMIN', 'ADMIN_AUTO_SERVICE','EMPLOYEE')"><a class="btn btn-info"
                    th:href="@{'/specieView/edit/'+${specie.speciesId}}">Edit</a></td>
-            <td><a class="btn btn-danger" th:href="@{'/specieView/delete/'+${specie.speciesId}}">Delete</a>
+            <td sec:authorize="hasAnyAuthority('ADMIN', 'ADMIN_AUTO_SERVICE','EMPLOYEE')"><a class="btn btn-danger" th:href="@{'/specieView/delete/'+${specie.speciesId}}">Delete</a>
             </td>
         </tr>
     </table>

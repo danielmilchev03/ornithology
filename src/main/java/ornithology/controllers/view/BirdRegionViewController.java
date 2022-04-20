@@ -3,11 +3,7 @@ package ornithology.controllers.view;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ornithology.data.entity.BirdClass;
-import ornithology.data.entity.BirdFound;
 import ornithology.data.entity.BirdRegion;
-import ornithology.service.BirdClassService;
-import ornithology.service.BirdFoundService;
 import ornithology.service.BirdRegionService;
 
 import java.util.List;
@@ -24,7 +20,7 @@ public class BirdRegionViewController {
 
     @GetMapping
     public String getBirdRegion(Model model) {
-        final List<BirdRegion> birdRegions = birdRegionService.getBirdRegion();
+        final List<BirdRegion> birdRegions = birdRegionService.getBirdRegions();
         model.addAttribute("birdRegions", birdRegions);
         return "/birdRegion/birdRegion";
     }
@@ -44,11 +40,15 @@ public class BirdRegionViewController {
     @GetMapping("/edit/{id}")
     public String showEditBirdRegion(Model model, @PathVariable Integer id) {
         model.addAttribute("birdRegion", birdRegionService.getBirdRegion(id));
+        model.addAttribute("regions", birdRegionService.getBirdRegions());
         return "/birdRegion/edit-bird-region";
     }
 
     @PostMapping("/update/{id}")
     public String updateBirdRegion(Model model, @PathVariable Integer id, BirdRegion birdRegion) {
+//        BirdRegion birdRegion1 = birdRegionService.getBirdRegion(1);
+//        birdRegion.setRegionId(birdRegion1);
+        System.out.println(birdRegion);
         birdRegionService.updateBirdRegion(birdRegion, id);
         return "redirect:/birdRegionView";
     }

@@ -9,6 +9,11 @@
 <div class="col-6">
     <form action="#" th:action="@{/birdRegionView/update/{id}(id=${birdRegion.regionId})}" th:object="${birdRegion}" method="post">
         <div class="form-group">
+            <select class="form-control" th:field="${birdRegion.regionId}" id="region">
+                <option value="">Select Region</option>
+                <option th:each="birdRegion : ${regions}" th:value="${birdRegion.regionId}"
+                        th:text="${birdRegion.regionName}"></option>
+            </select>
             <label for="regionName">Name:</label>
             <input class="form-control" type="text" th:field="*{regionName}" id="regionName">
             <label for="speciesId">Specie ID:</label>

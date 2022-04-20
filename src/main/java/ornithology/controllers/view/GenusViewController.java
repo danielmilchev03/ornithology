@@ -30,21 +30,23 @@ public class GenusViewController {
         return "/genus/genus";
     }
 
-    /*@GetMapping("/create-bird-class")
-    public String showCreateBirdClassForm(Model model) {
-        model.addAttribute("birdClass", new BirdClass());
-        return "/birdClass/create-bird-class";
-    }
-
-    @PostMapping("/create")
-    public String createBirdClass(@ModelAttribute BirdClass birdClass) {
-        birdClassService.create(birdClass);
-        return "redirect:/birdClassView";
-    }*/
+//    @GetMapping("/create-genus")
+//    public String showCreateBirdClassForm(Model model) {
+//        model.addAttribute("genus", new Genus());
+//        model.addAttribute("families", familyService.getFamily());
+//        return "/birdClass/create-bird-class";
+//    }
+//
+//    @PostMapping("/create")
+//    public String createGenus(@ModelAttribute Genus genus) {
+//        genusService.create(genus);
+//        return "redirect:/birdClassView";
+//    }
 
     @GetMapping("/edit/{id}")
     public String showEditGenus(Model model, @PathVariable Integer id) {
         model.addAttribute("genus", genusService.getGenus(id));
+        model.addAttribute("families", familyService.getFamily());
         return "/genus/edit-genus";
     }
 
@@ -54,6 +56,7 @@ public class GenusViewController {
         genus.setUserId(user);
         Family family = familyService.getFamily(1);
         genus.setFamilyId(family);
+        System.out.println(family);
         genusService.updateGenus(genus, id);
         return "redirect:/genusView";
     }

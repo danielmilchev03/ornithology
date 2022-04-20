@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments :: head"></head>
 
 <body>
@@ -15,18 +15,18 @@
         <th>Picture</th>
         <th>Specie name</th>
         <th>User name</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th sec:authorize="hasAnyAuthority('ADMIN', 'SCIENTIST', 'TEACHER')">Edit</th>
+        <th sec:authorize="hasAnyAuthority('ADMIN', 'SCIENTIST', 'TEACHER')">Delete</th>
         <tr th:each="birdFound : ${birdsFound}">
             <td th:text="${birdFound.birdFoundId}"></td>
             <td th:text="${birdFound.birdFoundDate}"></td>
             <td th:text="${birdFound.birdFoundCoordinates}"></td>
             <td th:text="${birdFound.birdFoundPicture}"></td>
             <td th:text="${birdFound.speciesId.speciesName}"></td>
-            <td th:text="${birdFound.userId.userName}"></td>
-            <td><a class="btn btn-info"
+            <td th:text="${birdFound.userId.username}"></td>
+            <td sec:authorize="hasAnyAuthority('ADMIN', 'ADMIN_AUTO_SERVICE','EMPLOYEE')"><a class="btn btn-info"
                    th:href="@{'/birdFoundView/edit/'+${birdFound.birdFoundId}}">Edit</a></td>
-            <td><a class="btn btn-danger" th:href="@{'/birdFoundView/delete/'+${birdFound.birdFoundId}}">Delete</a>
+            <td sec:authorize="hasAnyAuthority('ADMIN', 'ADMIN_AUTO_SERVICE','EMPLOYEE')"><a class="btn btn-danger" th:href="@{'/birdFoundView/delete/'+${birdFound.birdFoundId}}">Delete</a>
             </td>
         </tr>
     </table>

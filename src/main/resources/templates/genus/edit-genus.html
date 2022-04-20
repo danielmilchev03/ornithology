@@ -9,6 +9,11 @@
 <div class="col-6">
     <form action="#" th:action="@{/genusView/update/{id}(id=${genus.genusId})}" th:object="${genus}" method="post">
         <div class="form-group">
+            <select class="form-control" th:field="${genus.familyId}" id="family">
+                <option value="">Select Family</option>
+                <option th:each="family : ${families}" th:value="${family.familyId}"
+                        th:text="${family.familyName}"></option>
+            </select>
             <label for="genusName">Name:</label>
             <input class="form-control" type="text" th:field="*{genusName}" id="genusName">
             <label for="genusCreateDate">Date:</label>

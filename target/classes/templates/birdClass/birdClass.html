@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments :: head"></head>
 
 <body>
@@ -14,17 +14,17 @@
         <th>Classification name</th>
         <th>User name</th>
         <th>Family ID</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th sec:authorize="hasAnyAuthority('ADMIN', 'SCIENTIST', 'TEACHER')">Edit</th>
+        <th sec:authorize="hasAnyAuthority('ADMIN', 'SCIENTIST', 'TEACHER')">Delete</th>
         <tr th:each="birdClass : ${birdClasses}">
             <td th:text="${birdClass.classId}"></td>
             <td th:text="${birdClass.className}"></td>
             <td th:text="${birdClass.classificationId.classificationName}"></td>
-            <td th:text="${birdClass.userId.userName}"></td>
+            <td th:text="${birdClass.userId.username}"></td>
             <td th:text="${birdClass.familyList}"></td>
-            <td><a class="btn btn-info"
+            <td sec:authorize="hasAnyAuthority('ADMIN', 'ADMIN_AUTO_SERVICE','EMPLOYEE')"><a class="btn btn-info"
                    th:href="@{'/birdClassView/edit/'+${birdClass.classId}}">Edit</a></td>
-            <td><a class="btn btn-danger" th:href="@{'/birdClassView/delete/'+${birdClass.classId}}">Delete</a>
+            <td sec:authorize="hasAnyAuthority('ADMIN', 'ADMIN_AUTO_SERVICE','EMPLOYEE')"><a class="btn btn-danger" th:href="@{'/birdClassView/delete/'+${birdClass.classId}}">Delete</a>
             </td>
         </tr>
     </table>

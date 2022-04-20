@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments :: head"></head>
 
 <body>
@@ -12,15 +12,15 @@
         <th>ID</th>
         <th>Name</th>
         <th>Specie ID</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th sec:authorize="hasAnyAuthority('ADMIN', 'SCIENTIST', 'TEACHER')">Edit</th>
+        <th sec:authorize="hasAnyAuthority('ADMIN', 'SCIENTIST', 'TEACHER')">Delete</th>
         <tr th:each="birdRegion : ${birdRegions}">
             <td th:text="${birdRegion.regionId}"></td>
             <td th:text="${birdRegion.regionName}"></td>
             <td th:text="${birdRegion.speciesId}"></td>
-            <td><a class="btn btn-info"
+            <td sec:authorize="hasAnyAuthority('ADMIN', 'ADMIN_AUTO_SERVICE','EMPLOYEE')"><a class="btn btn-info"
                    th:href="@{'/birdRegionView/edit/'+${birdRegion.regionId}}">Edit</a></td>
-            <td><a class="btn btn-danger" th:href="@{'/birdRegionView/delete/'+${birdRegion.regionId}}">Delete</a>
+            <td sec:authorize="hasAnyAuthority('ADMIN', 'ADMIN_AUTO_SERVICE','EMPLOYEE')"><a class="btn btn-danger" th:href="@{'/birdRegionView/delete/'+${birdRegion.regionId}}">Delete</a>
             </td>
         </tr>
     </table>
