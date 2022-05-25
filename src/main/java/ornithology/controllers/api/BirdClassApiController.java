@@ -44,4 +44,6 @@ public class BirdClassApiController {
     public void deleteFamily(@PathVariable Integer id){
         birdClassService.deleteBirdClass(id);
     }
+
+
 }

@@ -22,7 +22,6 @@ public class BirdClassViewController {
         this.userService = userService;
     }
 
-
     @GetMapping
     public String getBirdClass(Model model) {
         final List<BirdClass> birdClasses = birdClassService.getBirdClass();
