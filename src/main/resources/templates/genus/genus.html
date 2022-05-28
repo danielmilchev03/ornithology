@@ -7,13 +7,13 @@
 
 <h4>Genuses list:</h4>
 <div class="col-6">
-    <h3 th:unless="${genuses} and ${genuses.size()}">There are no countries!</h3>
+    <h3 th:unless="${genuses} and ${genuses.size()}">There are no genuses!</h3>
     <table th:if="${genuses.size()>0}" class="table table-hover">
         <th>ID</th>
         <th>Name</th>
         <th>Create date</th>
-        <th>Family ID</th>
-        <th>User ID</th>
+        <th>Family name</th>
+        <th>User</th>
         <th sec:authorize="hasAnyAuthority('ADMIN', 'SCIENTIST', 'TEACHER')">Edit</th>
         <th sec:authorize="hasAnyAuthority('ADMIN', 'SCIENTIST', 'TEACHER')">Delete</th>
         <tr th:each="genus : ${genuses}">
@@ -21,7 +21,7 @@
             <td th:text="${genus.genusName}"></td>
             <td th:text="${genus.genusCreateDate}"></td>
             <td th:text="${genus.familyId.familyName}"></td>
-            <td th:text="${genus.userId}"></td>
+            <td th:text="${genus.userId.username}"></td>
             <td sec:authorize="hasAnyAuthority('ADMIN', 'ADMIN_AUTO_SERVICE','EMPLOYEE')"><a class="btn btn-info"
                    th:href="@{'/genusView/edit/'+${genus.genusId}}">Edit</a></td>
             <td sec:authorize="hasAnyAuthority('ADMIN', 'ADMIN_AUTO_SERVICE','EMPLOYEE')"><a class="btn btn-danger" th:href="@{'/genusView/delete/'+${genus.genusId}}">Delete</a>
