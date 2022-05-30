@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+<header th:replace="fragments :: header"></header>
+<h4>Register the Specie</h4>
+<div class="col-6">
+    <form action="#" th:action="@{/specieView/create}" th:object="${specie}" method="post">
+        <div class="form-group">
+            <label for="speciesName">Name:</label>
+            <input class="form-control" type="text" th:field="*{speciesName}" placeholder="Specie Name" id="speciesName">
+<!--            <label for="speciesCreateDate">Create date:</label>-->
+<!--            <input class="form-control" type="text" th:field="*{speciesCreateDate}" placeholder="Date" id="speciesCreateDate">-->
+            <label for="speciesCreateDate">Create date:</label>
+            <input class="form-control" type="date" th:field="*{speciesCreateDate}" placeholder="Date"
+                   id="speciesCreateDate">
+            <label for="genusId">Genus:</label>
+            <select class="form-control" th:field="${specie.genusId}" id="genusId">
+                <option value="">Select Genus</option>
+                <option th:each="genusId : ${genusIds}" th:value="${genusId.genusId}"
+                        th:text="${genusId.genusName}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Specie</button>
+    </form>
+</div>
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

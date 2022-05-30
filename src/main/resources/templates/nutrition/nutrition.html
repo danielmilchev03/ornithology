@@ -7,6 +7,8 @@
 
 <h4>Nutrition list:</h4>
 <div class="col-6">
+    <a sec:authorize="hasAnyAuthority('ADMIN', 'TEACHER','EMPLOYEE')" class="btn btn-success"
+       th:href="@{'/historyView/create-history/'}">Add</a>
     <h3 th:unless="${nutritions} and ${nutritions.size()}">There are no nutritions!</h3>
     <table th:if="${nutritions.size()>0}" class="table table-hover">
         <th>ID</th>
@@ -16,9 +18,9 @@
         <tr th:each="nutrition : ${nutritions}">
             <td th:text="${nutrition.nutritionId}"></td>
             <td th:text="${nutrition.nutritionName}"></td>
-            <td sec:authorize="hasAnyAuthority('ADMIN', 'ADMIN_AUTO_SERVICE','EMPLOYEE')"><a class="btn btn-info"
+            <td sec:authorize="hasAnyAuthority('ADMIN', 'TEACHER','EMPLOYEE')"><a class="btn btn-info"
                    th:href="@{'/nutritionView/edit/'+${nutrition.nutritionId}}">Edit</a></td>
-            <td sec:authorize="hasAnyAuthority('ADMIN', 'ADMIN_AUTO_SERVICE','EMPLOYEE')"><a class="btn btn-danger" th:href="@{'/nutritionView/delete/'+${nutrition.nutritionId}}">Delete</a>
+            <td sec:authorize="hasAnyAuthority('ADMIN', 'TEACHER','EMPLOYEE')"><a class="btn btn-danger" th:href="@{'/nutritionView/delete/'+${nutrition.nutritionId}}">Delete</a>
             </td>
         </tr>
     </table>

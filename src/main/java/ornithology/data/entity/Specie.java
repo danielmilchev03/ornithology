@@ -56,11 +56,11 @@ public class Specie implements Serializable {
     private List<SpecieNutrition> specieNutritionList;
     @JoinColumn(name = "genus_id", referencedColumnName = "genus_id")
     @ManyToOne(optional = false)
-    @JsonIgnoreProperties("")
+    @JsonIgnore
     private Genus genusId;
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     @ManyToOne(optional = false)
-    @JsonIgnoreProperties("")
+    @JsonIgnore
     private User userId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "speciesId")
     @JsonIgnore

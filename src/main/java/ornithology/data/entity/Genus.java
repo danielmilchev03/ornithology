@@ -65,11 +65,11 @@ public class Genus implements Serializable {
     private List<Specie> specieList;
     @JoinColumn(name = "family_id", referencedColumnName = "family_id")
     @ManyToOne(optional = false)
-    @JsonIgnoreProperties("")
+    @JsonIgnore
     private Family familyId;
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     @ManyToOne(optional = false)
-    @JsonIgnoreProperties("")
+    @JsonIgnore
     private User userId;
 
     public Genus() {

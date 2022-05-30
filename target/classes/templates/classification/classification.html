@@ -5,22 +5,24 @@
 <body>
 <header th:replace="fragments :: header"></header>
 
-<h4>Bird classes list:</h4>
+<h4>Bird classification list:</h4>
 <div class="col-6">
+    <a sec:authorize="hasAnyAuthority('ADMIN', 'TEACHER','EMPLOYEE')" class="btn btn-success"
+       th:href="@{'/historyView/create-history/'}">Add</a>
     <h3 th:unless="${classifications} and ${classifications.size()}">There are no classifications!</h3>
     <table th:if="${classifications.size()>0}" class="table table-hover">
         <th>ID</th>
-        <th>Name</th>
-        <th>User name</th>
+        <th>Classification Name</th>
+        <th>User</th>
         <th sec:authorize="hasAnyAuthority('ADMIN', 'SCIENTIST', 'TEACHER')">Edit</th>
         <th sec:authorize="hasAnyAuthority('ADMIN', 'SCIENTIST', 'TEACHER')">Delete</th>
         <tr th:each="classification : ${classifications}">
             <td th:text="${classification.classificationId}"></td>
             <td th:text="${classification.classificationName}"></td>
             <td th:text="${classification.userId.username}"></td>
-            <td sec:authorize="hasAnyAuthority('ADMIN', 'ADMIN_AUTO_SERVICE','EMPLOYEE')"><a class="btn btn-info"
+            <td sec:authorize="hasAnyAuthority('ADMIN', 'TEACHER','EMPLOYEE')"><a class="btn btn-info"
                    th:href="@{'/classificationView/edit/'+${classification.classificationId}}">Edit</a></td>
-            <td sec:authorize="hasAnyAuthority('ADMIN', 'ADMIN_AUTO_SERVICE','EMPLOYEE')"><a class="btn btn-danger" th:href="@{'/classificationView/delete/'+${classification.classificationId}}">Delete</a>
+            <td sec:authorize="hasAnyAuthority('ADMIN', 'TEACHER','EMPLOYEE')"><a class="btn btn-danger" th:href="@{'/classificationView/delete/'+${classification.classificationId}}">Delete</a>
             </td>
         </tr>
     </table>

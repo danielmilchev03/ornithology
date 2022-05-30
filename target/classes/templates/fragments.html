@@ -27,19 +27,10 @@ and open the template in the editor.
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/birdClassView">Bird classes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/birdFoundView">Birds found</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/birdRegionView">Bird regions</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="/classificationView">Classifications</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/countryView">Countries</a>
+                    <a class="nav-link" href="/birdClassView">Bird classes</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/familyView">Families</a>
@@ -48,17 +39,26 @@ and open the template in the editor.
                     <a class="nav-link" href="/genusView">Genuses</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/specieView">Species</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/nutritionView">Nutritions</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/specieView">Species</a>
+                    <a class="nav-link" href="/birdFoundView">Birds found</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/countryView">Countries</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/birdRegionView">Bird regions</a>
                 </li>
                 <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN')">
                     <a class="nav-link" href="/userView">User</a>
                 </li>
-                <li class="navbar-right btn btn-success btn-sm" sec:authorize="hasAnyAuthority('ADMIN')" style="margin-left: 40vw;">
-                    <a class="nav-link" href="/userView" style="color: white">Add</a>
-                </li>
+<!--                <li class="navbar-right btn btn-success btn-sm" sec:authorize="hasAnyAuthority('ADMIN')" style="margin-left: 40vw;">-->
+<!--                    <a class="nav-link" href="/userView" style="color: white">Add</a>-->
+<!--                </li>-->
             </ul>
         </div>
     </nav>

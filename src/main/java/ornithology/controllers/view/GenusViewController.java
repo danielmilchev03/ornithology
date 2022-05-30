@@ -54,9 +54,9 @@ public class GenusViewController {
     public String updateGenus(Model model, @PathVariable Integer id, Genus genus) {
         User user = userService.getUser(1);
         genus.setUserId(user);
-        Family family = familyService.getFamily(1);
-        genus.setFamilyId(family);
-        System.out.println(family);
+//        Family family = familyService.getFamily(1);
+//        genus.setFamilyId(family);
+//        System.out.println(family);
         genusService.updateGenus(genus, id);
         return "redirect:/genusView";
     }

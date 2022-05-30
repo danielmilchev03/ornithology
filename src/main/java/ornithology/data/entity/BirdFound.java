@@ -75,7 +75,7 @@ public class BirdFound implements Serializable {
     @JsonIgnoreProperties("")
     private User userId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "birdsFoundId")
-    @JsonIgnore
+    @JsonIgnoreProperties("")
     private List<CountryBirdFound> countryBirdFoundList;
 
     public BirdFound() {

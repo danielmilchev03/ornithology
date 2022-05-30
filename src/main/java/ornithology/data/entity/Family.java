@@ -66,11 +66,11 @@ public class Family implements Serializable {
     private Date familyCreateDate;
     @JoinColumn(name = "class_id", referencedColumnName = "class_id")
     @ManyToOne(optional = false)
-    @JsonIgnoreProperties("")
+    @JsonIgnore
     private BirdClass classId;
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     @ManyToOne(optional = false)
-    @JsonIgnoreProperties("")
+    @JsonIgnore
     private User userId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "familyId")
     @JsonIgnore

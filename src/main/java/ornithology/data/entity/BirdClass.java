@@ -60,7 +60,7 @@ public class BirdClass implements Serializable {
     @JsonIgnore
     private User userId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "classId")
-    @JsonIgnore
+    @JsonIgnoreProperties("")
     private List<Family> familyList;
 
     public BirdClass() {

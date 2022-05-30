@@ -3,11 +3,10 @@ package ornithology.controllers.view;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ornithology.data.entity.BirdClass;
 import ornithology.data.entity.BirdFound;
 import ornithology.data.entity.User;
-import ornithology.service.BirdClassService;
 import ornithology.service.BirdFoundService;
+import ornithology.service.SpecieService;
 import ornithology.service.UserService;
 
 import java.util.List;
@@ -18,10 +17,12 @@ public class BirdFoundViewController {
 
     private final BirdFoundService birdFoundService;
     private final UserService userService;
+    private final SpecieService specieService;
 
-    public BirdFoundViewController(BirdFoundService birdFoundService, UserService userService) {
+    public BirdFoundViewController(BirdFoundService birdFoundService, UserService userService, SpecieService specieService) {
         this.birdFoundService = birdFoundService;
         this.userService = userService;
+        this.specieService = specieService;
     }
 
     @GetMapping
@@ -46,6 +47,7 @@ public class BirdFoundViewController {
     @GetMapping("/edit/{id}")
     public String showEditBirdClass(Model model, @PathVariable Integer id) {
         model.addAttribute("birdFound", birdFoundService.getBirdFound(id));
+        model.addAttribute("species", specieService.getSpecie());
         return "/birdFound/edit-bird-found";
     }
 

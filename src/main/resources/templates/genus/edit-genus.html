@@ -5,10 +5,11 @@
 <body>
 <header th:replace="fragments :: header"></header>
 
-<h4>Ornithology edit:</h4>
+<h4>Family edit:</h4>
 <div class="col-6">
     <form action="#" th:action="@{/genusView/update/{id}(id=${genus.genusId})}" th:object="${genus}" method="post">
         <div class="form-group">
+            <label for="family">Family name:</label>
             <select class="form-control" th:field="${genus.familyId}" id="family">
                 <option value="">Select Family</option>
                 <option th:each="family : ${families}" th:value="${family.familyId}"

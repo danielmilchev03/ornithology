@@ -1,6 +1,7 @@
 package ornithology.data.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -42,25 +43,25 @@ public class User implements Serializable, UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> authorities;
 
-    @JsonIgnore
+    @JsonIgnoreProperties("")
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private List<Classification> classificationList;
-    @JsonIgnore
+    @JsonIgnoreProperties("")
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private List<Specie> specieList;
-    @JsonIgnore
+    @JsonIgnoreProperties("")
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private List<BirdClass> birdClassList;
-    @JsonIgnore
+    @JsonIgnoreProperties("")
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private List<BirdFound> birdFoundList;
-    @JsonIgnore
+    @JsonIgnoreProperties("")
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private List<Family> familyList;
-    @JsonIgnore
+    @JsonIgnoreProperties("")
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private List<Genus> genusList;
-    @JsonIgnore
+    @JsonIgnoreProperties("")
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private List<Nutrition> nutritionList;
 

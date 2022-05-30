@@ -7,6 +7,8 @@
 
 <h4>Bird regions list:</h4>
 <div class="col-6">
+    <a sec:authorize="hasAnyAuthority('ADMIN', 'TEACHER','EMPLOYEE')" class="btn btn-success"
+       th:href="@{'/historyView/create-history/'}">Add</a>
     <h3 th:unless="${birdRegions} and ${birdRegions.size()}">There are no bird regions!</h3>
     <table th:if="${birdRegions.size()>0}" class="table table-hover">
         <th>ID</th>
@@ -18,9 +20,9 @@
             <td th:text="${birdRegion.regionId}"></td>
             <td th:text="${birdRegion.regionName}"></td>
             <td th:text="${birdRegion.speciesId}"></td>
-            <td sec:authorize="hasAnyAuthority('ADMIN', 'ADMIN_AUTO_SERVICE','EMPLOYEE')"><a class="btn btn-info"
+            <td sec:authorize="hasAnyAuthority('ADMIN', 'TEACHER','EMPLOYEE')"><a class="btn btn-info"
                    th:href="@{'/birdRegionView/edit/'+${birdRegion.regionId}}">Edit</a></td>
-            <td sec:authorize="hasAnyAuthority('ADMIN', 'ADMIN_AUTO_SERVICE','EMPLOYEE')"><a class="btn btn-danger" th:href="@{'/birdRegionView/delete/'+${birdRegion.regionId}}">Delete</a>
+            <td sec:authorize="hasAnyAuthority('ADMIN', 'TEACHER','EMPLOYEE')"><a class="btn btn-danger" th:href="@{'/birdRegionView/delete/'+${birdRegion.regionId}}">Delete</a>
             </td>
         </tr>
     </table>

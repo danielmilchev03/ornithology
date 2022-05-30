@@ -7,13 +7,14 @@
 
 <h4>Bird classes list:</h4>
 <div class="col-6">
+    <a sec:authorize="hasAnyAuthority('ADMIN', 'TEACHER','EMPLOYEE')" class="btn btn-success"
+       th:href="@{'/historyView/create-history/'}">Add</a>
     <h3 th:unless="${birdClasses} and ${birdClasses.size()}">There are no bird classes!</h3>
     <table th:if="${birdClasses.size()>0}" class="table table-hover">
         <th>ID</th>
-        <th>Name</th>
+        <th>Class Name</th>
         <th>Classification name</th>
-        <th>User name</th>
-        <th>Family ID</th>
+        <th>User</th>
         <th sec:authorize="hasAnyAuthority('ADMIN', 'SCIENTIST', 'TEACHER')">Edit</th>
         <th sec:authorize="hasAnyAuthority('ADMIN', 'SCIENTIST', 'TEACHER')">Delete</th>
         <tr th:each="birdClass : ${birdClasses}">
@@ -21,10 +22,9 @@
             <td th:text="${birdClass.className}"></td>
             <td th:text="${birdClass.classificationId.classificationName}"></td>
             <td th:text="${birdClass.userId.username}"></td>
-            <td th:text="${birdClass.familyList}"></td>
-            <td sec:authorize="hasAnyAuthority('ADMIN', 'ADMIN_AUTO_SERVICE','EMPLOYEE')"><a class="btn btn-info"
+            <td sec:authorize="hasAnyAuthority('ADMIN', 'TEACHER','EMPLOYEE')"><a class="btn btn-info"
                    th:href="@{'/birdClassView/edit/'+${birdClass.classId}}">Edit</a></td>
-            <td sec:authorize="hasAnyAuthority('ADMIN', 'ADMIN_AUTO_SERVICE','EMPLOYEE')"><a class="btn btn-danger" th:href="@{'/birdClassView/delete/'+${birdClass.classId}}">Delete</a>
+            <td sec:authorize="hasAnyAuthority('ADMIN', 'TEACHER','EMPLOYEE')"><a class="btn btn-danger" th:href="@{'/birdClassView/delete/'+${birdClass.classId}}">Delete</a>
             </td>
         </tr>
     </table>

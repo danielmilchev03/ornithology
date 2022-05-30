@@ -16,13 +16,11 @@
             <label for="birdFoundPicture">Picture:</label>
             <input class="form-control" type="text" th:field="*{birdFoundPicture}" id="birdFoundPicture">
 
-            <label for="speciesId">Specie id:</label>
-<!--            <input class="form-control" type="text" th:field="*{speciesId}" id="speciesId">-->
-
-            <select class="form-control" th:field="${birdFound.speciesId}" id="speciesId">
+            <label for="species">Specie name:</label>
+            <select class="form-control" th:field="${birdFound.speciesId}" id="species">
                 <option value="">Select species</option>
-                <option th:each="speciesId : ${species}" th:value="${speciesId}"
-                        th:text="${speciesId.speciesName}"></option>
+                <option th:each="specie : ${species}" th:value="${specie.speciesId}"
+                        th:text="${specie.speciesName}"></option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Update birds found</button>

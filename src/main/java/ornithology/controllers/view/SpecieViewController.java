@@ -29,17 +29,21 @@ public class SpecieViewController {
         return "/specie/specie";
     }
 
-    /*@GetMapping("/create-bird-class")
-    public String showCreateBirdClassForm(Model model) {
-        model.addAttribute("birdClass", new BirdClass());
-        return "/birdClass/create-bird-class";
+    @GetMapping("/create-specie")
+    public String showCreateSpecieForm(Model model) {
+        model.addAttribute("specie", new Specie());
+        model.addAttribute("genusIds", genusService.getGenus());
+        //model.addAttribute("username", userService.getUser());
+        return "/specie/create-specie";
     }
 
     @PostMapping("/create")
-    public String createBirdClass(@ModelAttribute BirdClass birdClass) {
-        birdClassService.create(birdClass);
-        return "redirect:/birdClassView";
-    }*/
+    public String createSpecie(@ModelAttribute Specie specie) {
+        User user = userService.getUser(1);
+        specie.setUserId(user);
+        specieService.create(specie);
+        return "redirect:/specieView";
+    }
 
     @GetMapping("/edit/{id}")
     public String showEditSpecie(Model model, @PathVariable Integer id) {
